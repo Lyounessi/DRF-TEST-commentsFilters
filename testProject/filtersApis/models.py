@@ -14,7 +14,8 @@ class Pages(models.Model):
 class Posts(models.Model):
     content = models.TextField()
     posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    created = models.DateTimeField()
+    date_created = models.DateField()
+    time_created = models.TimeField()
     page = models.ForeignKey(Pages, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -24,7 +25,8 @@ class Posts(models.Model):
 class Comments(models.Model):
     comment = models.TextField()
     post = models.ForeignKey(Posts, on_delete=models.CASCADE)
-    created = models.DateTimeField()
+    date_created = models.DateField()
+    time_created = models.TimeField()
 
     def __str__(self):
         return str(self.post.id)
@@ -32,7 +34,8 @@ class Comments(models.Model):
 
 class Replys(models.Model):
     reply = models.TextField()
-    created = models.DateTimeField()
+    date_created = models.DateField()
+    time_created = models.TimeField()
     replied_by = models.ForeignKey(User, on_delete=models.CASCADE)
     linked_comment = models.ForeignKey(Comments, on_delete=models.CASCADE)
 
